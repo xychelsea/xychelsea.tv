@@ -34,8 +34,9 @@ COPY --from=build /go/bin/hugo /usr/bin/hugo
 
 # libc6-compat & libstdc++ are required for extended SASS libraries
 # ca-certificates are required to fetch outside resources (like Twitter oEmbeds)
-RUN apk update && \
-    apk add --no-cache ca-certificates libc6-compat libstdc++ git
+RUN apk add --update --no-cache ca-certificates git libc6-compat libstdc++ npm
+
+RUN npm install -g postcss postcss-cli
 
 # generate our working directory and mount point
 RUN mkdir -p /site

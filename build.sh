@@ -7,4 +7,4 @@ docker run \
 	--rm \
 	--tty \
 	--volume `pwd`:/site \
-	xychelsea/hugo:latest $1
+	xychelsea/hugo:latest
