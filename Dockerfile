@@ -5,7 +5,7 @@
 FROM golang:1.19.2-alpine AS build
 
 # Optionally set HUGO_BUILD_TAGS to "extended" or "nodeploy" when building like so:
-#   docker build --build-arg HUGO_BUILD_TAGS=extended .
+#   docker build --network=host -t xychelsea/hugo:latest --build-arg HUGO_BUILD_TAGS=extended -f Dockerfile .
 ARG HUGO_BUILD_TAGS
 
 ARG CGO=1
