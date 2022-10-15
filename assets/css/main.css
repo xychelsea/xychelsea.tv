@@ -105,7 +105,7 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 0 var(--social-bar-gutter);
   font-family: "Barlow", sans-serif;
   min-height: 100vh;
 }
