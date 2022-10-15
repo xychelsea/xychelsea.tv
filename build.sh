@@ -2,9 +2,9 @@
 
 docker run \
 	--interactive \
-	--name xychelseatv-hugo \
+	--name xychelsea.tv-hugo \
 	--publish 1313:1313 \
 	--rm \
 	--tty \
 	--volume `pwd`:/site \
-	hugo:latest
+	xychelsea/hugo:latest $1

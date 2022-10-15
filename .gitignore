@@ -1,3 +1,5 @@
-public
+.hugo_build.lock
+hugo_cache
 node_modules
+public
 resources

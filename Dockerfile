@@ -20,12 +20,15 @@ RUN apk update && \
 # build hugo
 RUN git clone https://github.com/gohugoio/hugo.git /go/src/github.com/gohugoio/hugo
 WORKDIR /go/src/github.com/gohugoio/hugo
-RUN go install github.com/magefile/mage@latest
+RUN git branch v0.104.3
+RUN go install github.com/magefile/mage@v1.14.0
 RUN mage hugo && mage install
 
 # ---
 
 FROM alpine:3.16.2
+
+ENV HUGO_CACHEDIR=/site/hugo_cache
 
 COPY --from=build /go/bin/hugo /usr/bin/hugo
 
@@ -34,11 +37,12 @@ COPY --from=build /go/bin/hugo /usr/bin/hugo
 RUN apk update && \
     apk add --no-cache ca-certificates libc6-compat libstdc++ git
 
+# generate our working directory and mount point
 RUN mkdir -p /site
 WORKDIR /site
 
 # Expose port for live server
 EXPOSE 1313
 
-ENTRYPOINT ["hugo"]
-CMD ["--help"]
+ENTRYPOINT ["/usr/bin/hugo"]
+CMD [""]
