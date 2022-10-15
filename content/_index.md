@@ -49,5 +49,5 @@ These experiences, and the insights they gave her, are fully documented in Chels
 {{< /contact >}}
 
 {{< media
-  title=`Selected Media`
+  title=`Media`
 >}}

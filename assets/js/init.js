@@ -194,8 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
       updateMediaSelection(hash);
       window.location = hash;
       const scrollY = window.scrollY;
+      document.documentElement.style.scrollBehavior = "auto";
       window.requestAnimationFrame(() => {
         window.scrollTo(0, scrollY);
+        
+        window.requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = null;
+        });
       });
       event.preventDefault();
     });

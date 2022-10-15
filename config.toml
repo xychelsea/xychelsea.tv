@@ -2,6 +2,7 @@ baseURL = 'https://xychelsea.tv/'
 languageCode = 'en-us'
 title = 'Chelsea Manning'
 disableKinds = ['taxonomy', 'term']
+cleanDestinationDir = true
 [minify]
   minifyOutput = true
 
