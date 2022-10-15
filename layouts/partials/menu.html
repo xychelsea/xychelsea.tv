@@ -1,0 +1,16 @@
+<div id="close-menu"></div>
+<nav id="main-menu" title="main menu" tabindex="0">
+  <a href="#main-menu" class="open-button menu-icon" title="open main menu" tabindex="-1"><picture alt=""></picture></a>
+  <aside>
+    <a href="#close-menu" class="close-button" title="close main menu"><picture alt=""></picture></a>
+    <ul>
+      {{ range .Site.Menus.main }}
+        <li>
+          <li>
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          </li>
+        </li>
+      {{ end }}
+    </ul>
+  </aside>
+</nav>

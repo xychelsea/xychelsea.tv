@@ -1,0 +1,17 @@
+{
+  "comments": {
+    "dependencies": {},
+    "devDependencies": {
+      "postcss": "project",
+      "postcss-cli": "project",
+      "postcss-preset-env": "project"
+    }
+  },
+  "devDependencies": {
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "postcss-nesting": "^10.2.0"
+  },
+  "name": "chelsea",
+  "version": "0.1.0"
+}

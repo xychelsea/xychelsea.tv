@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <main>
+    <section id="http404">
+      <h2 class="heading">Page not found</h2>
+      <div class="content">
+        <p>
+          <strong>You are being redirected to the <a href="/">home page</a>.<strong>
+        </p>
+      </div>
+    </section>
+  </main>
+  <script>
+    setTimeout(function() {
+        window.location.href="/"; 
+      }, 5000);
+  </script>
+{{ end }}

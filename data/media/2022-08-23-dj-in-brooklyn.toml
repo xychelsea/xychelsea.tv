@@ -1,0 +1,9 @@
+Title = 'New York Times'
+Slug = 'dj-in-brooklyn'
+Label = "NYT"
+Description = '“Know Who Else Is a D.J. in Brooklyn? Chelsea Manning”'
+Embed = ''
+Thumbnail = 'dj-in-brooklyn.webp'
+Link = 'https://www.nytimes.com/2022/08/23/style/chelsea-manning-dj-brooklyn.html'
+Banner = 'dj-in-brooklyn.webp'
+Weight = 10

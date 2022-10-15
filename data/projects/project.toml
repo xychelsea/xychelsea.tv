@@ -1,0 +1,7 @@
+Title = "Gaming Rig Build"
+Slug = 'pc'
+Description = 'Chelsea assembles her new PC.'
+Image = 'pc.webp'
+Link = 'https://twitter.com/xychelsea/status/1327756932531281920'
+LinkText = 'See more'
+Weight = 10

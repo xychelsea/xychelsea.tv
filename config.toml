@@ -1,0 +1,64 @@
+baseURL = 'https://xychelsea.tv/'
+languageCode = 'en-us'
+title = 'Chelsea Manning'
+disableKinds = ['taxonomy', 'term']
+[minify]
+  minifyOutput = true
+
+[params]
+  description = 'Technologist and network security expert, analyst, and consultant whose actions showed the world that the conscience of individuals can make urgent change through bravery and determination.'
+  socialCardBanner = '/images/social-card-banner.jpg'
+
+[[menu.main]]
+  url = '/#about'
+  name = 'About Chelsea'
+  weight = 10
+[[menu.main]]
+  url = '/#events'
+  name = 'Speaking Engagements'
+  weight = 20
+[[menu.main]]
+  url = '/#memoir'
+  name = 'Chelsea’s Memoir'
+  weight = 30
+[[menu.main]]
+  url = '/#projects'
+  name = 'Past + Current Projects'
+  weight = 40
+[[menu.main]]
+  url = '/#contact'
+  name = 'Book Now'
+  weight = 50
+[[menu.main]]
+  url = '/#media'
+  name = 'Media'
+  weight = 60
+
+[[menu.social]]
+  url = 'https://twitter.com/xychelsea'
+  name = 'Twitter'
+  weight = 10
+[[menu.social]]
+  url = 'https://www.instagram.com/xychelsea87'
+  name = 'Instagram'
+  weight = 20
+[[menu.social]]
+  url = 'https://discord.gg/rW3apETKpe'
+  name = 'Discord'
+  weight = 30
+[[menu.social]]
+  url = 'https://www.youtube.com/xychelsea'
+  name = 'YouTube'
+  weight = 40
+[[menu.social]]
+  url = 'https://www.twitch.tv/xychelsea87'
+  name = 'Twitch'
+  weight = 50
+[[menu.social]]
+  url = 'https://github.com/xychelsea'
+  name = 'GitHub'
+  weight = 60
+[[menu.social]]
+  url = 'https://www.tiktok.com/@xychelseatv'
+  name = 'TikTok'
+  weight = 70

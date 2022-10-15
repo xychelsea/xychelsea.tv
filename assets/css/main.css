@@ -1,0 +1,1600 @@
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/barlow-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: italic;
+  src: url("/fonts/barlow-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/barlow-semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/barlow-bold.woff2") format("woff2");
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cm-purple) rgba(0, 0, 0, 0.07);
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+    background: var(--cm-purple);
+    transition: background-color 0.5s ease-out;
+
+    &:hover:not(:active) {
+      background: var(--cm-magenta);
+    }
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 0.25rem;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.07);
+    }
+  }
+
+}
+
+*:focus-visible {
+  outline: var(--outline-width) solid var(--cm-purple);
+}
+
+:root {
+  --section-heading-width: 36%;
+  --section-padding: 7.5%;
+  /* This is 100% - 2 * var(--section-padding) expressed as a CSS <number>. */
+  --section-content-ratio: 0.85;
+  --section-content-edge: calc(36vw + 7.5vw);
+  --cm-purple: rgb(133, 0, 211);
+  --cm-purple-half: rgba(133, 0, 211, 0.5);
+  --cm-magenta: rgb(221, 9, 131);
+  --cm-magenta-half: rgba(221, 9, 131, 0.5);
+  --shared-gradient:
+    linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0.8) 6vw,
+      rgba(255, 255, 255, 0) 99vw
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 209, 255, var(--shared-gradient-opacity)) 0vw,
+      rgba(167, 34, 245, var(--shared-gradient-opacity)) 96rem,
+      rgba(0, 209, 255, var(--shared-gradient-opacity)) 186rem,
+      rgba(255, 90, 148, var(--shared-gradient-opacity)) 268rem
+    );
+  --shared-gradient-height: 280rem;
+  --card-icon-background: linear-gradient(95deg, rgba(133, 0, 211, 0.8) -5%, rgba(207, 0, 112, 0.8) 115%);
+  --outline-width: 0.125rem;
+  --transition-duration: 0.2s;
+
+  --default-social-icon-size: calc(100vw / 18);
+  --default-social-bar-height: calc(3.5 * var(--default-social-icon-size));
+
+  --footer-padding: 1.25rem;
+  --footer-line-height: 1rem;
+  --footer-height: calc(var(--footer-line-height) + 2 * var(--footer-padding));
+
+  @media screen and (min-width: 48rem) {
+    --shared-gradient-opacity: 0.2;
+    --social-bar-gutter: 0;
+  }
+  @media not screen and (min-width: 48rem) {
+    --shared-gradient-opacity: 0.1;
+    --social-bar-gutter: calc(3.5 * var(--default-social-icon-size) - 0.5px);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Barlow", sans-serif;
+  min-height: 100vh;
+}
+
+:is(h1, h2, h3) {
+  margin: 0;
+  text-transform: uppercase;
+
+  &:is(h1) {
+    font-size: min(7.8125rem, calc(100vw / 5.5));
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  &:is(h2) {
+    text-align: right;
+    
+    @media screen and (min-width: 48rem) {
+      font-size: 3.125rem;
+      margin-bottom: 3.5rem;
+      white-space: pre-line;
+    }
+    @media not screen and (min-width: 48rem) {
+      font-size: 1.875rem;
+      hyphens: none;
+    }
+  }
+
+  &:is(h2, h3) {
+    font-weight: 600;
+    line-height: 1.1;
+  }
+}
+
+p {
+  line-height: 1.5;
+  text-align: justify;
+
+  margin: 0;
+  & + p {
+    margin-top: 1rem;
+  }
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+.button {
+  display: block;
+  margin-top: 2.375rem;
+  width: max-content;
+  text-align: center;
+  border-style: solid;
+
+  font-weight: 600;
+  font-family: "Barlow";
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  user-select: none;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 0.25rem solid var(--cm-magenta);
+
+    @nest #contact & {
+      @media screen and (min-width: 48rem) {
+        outline-color: var(--cm-purple);
+      }
+    }
+  }
+
+  --default-color: var(--cm-purple);
+  --default-background-color: transparent;
+  --default-border-color: var(--cm-purple);
+  
+  --hover-color: white;
+  --hover-background-color: var(--cm-purple);
+  --hover-border-color: transparent;
+
+  --active-color: var(--cm-purple);
+  --active-background-color: var(--cm-purple-half);
+  --active-border-color: transparent;
+
+  &:not(:hover, :focus-visible, :active) {
+    color: var(--default-color);
+    background-color: var(--default-background-color);
+    border-color: var(--default-border-color);
+  }
+  &:is(:hover, :focus-visible):not(:active, :disabled) {
+    color: var(--hover-color);
+    background-color: var(--hover-background-color);
+    border-color: var(--hover-border-color);
+  }
+  &:active:not(:disabled) {
+    color: var(--active-color);
+    background-color: var(--active-background-color);
+    border-color: var(--active-border-color);
+  }
+  &:disabled {
+    color: var(--default-color);
+    background-color: var(--default-background-color);
+    border-color: var(--default-border-color);
+    opacity: 50%;
+  }
+  
+  @nest .heading & {
+    margin-left: auto;
+
+    @nest #contact & {
+      margin-top: 3.5rem;
+
+      @media screen and (min-width: 48rem) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 48rem) {
+    &.compact{
+      border-width: 0.125rem;
+      border-radius: 1.45rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+
+    &:not(.compact) {
+      border-width: 0.15rem;
+      border-radius: 1.775rem;
+      padding: 1rem 1.875rem;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+  }
+  @media not screen and (min-width: 48rem) {
+    border-width: 0.1rem;
+    border-radius: 1.225rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+
+    margin-left: auto;
+  }
+
+  @nest :is(.card) & {
+    --default-color: white;
+    --default-background-color: var(--cm-purple);
+    --default-border-color: transparent;
+    
+    --hover-color: white;
+    --hover-background-color: var(--cm-magenta);
+    --hover-border-color: transparent;
+  
+    --active-color: white;
+    --active-background-color: var(--cm-magenta-half);
+    --active-border-color: transparent;
+  }
+
+  @nest &.white, :is(#memoir, #contact) > .heading & {
+    --default-color: white;
+    --default-background-color: transparent;
+    --default-border-color: white;
+    
+    --hover-color: var(--cm-purple);
+    --hover-background-color: white;
+    --hover-border-color: transparent;
+  
+    --active-color: var(--cm-purple);
+    --active-background-color: rgba(255, 255, 255, 0.5);
+    --active-border-color: transparent;
+  }
+  
+  @nest &.black, :is(#media) > & {
+    --default-color: white;
+    --default-background-color: black;
+    --default-border-color: transparent;
+    
+    --hover-color: white;
+    --hover-background-color: var(--cm-purple);
+    --hover-border-color: transparent;
+  
+    --active-color: white;
+    --active-background-color: var(--cm-purple-half);
+    --active-border-color: transparent;
+  }
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  user-select: none;
+
+  & > button {
+    outline: none;
+    border: var(--outline-width) dotted transparent;
+    margin-bottom: var(--gap-size);
+    width: 1.5rem;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &:focus-visible {
+      border-color: var(--cm-purple);
+    }
+    
+    &:disabled {
+      cursor: default;
+    }
+
+    &:last-of-type {
+      transform: scaleX(-1);
+    }
+
+    & > picture {
+      aspect-ratio: 7 / 12;
+      margin: 0 0.125rem;
+      width: 50%;
+      clip-path: url(#scroll-arrow-clip-path);
+      display: block;
+      background-color: var(--cm-purple);
+
+      @nest button:is(:hover, :focus-visible):not(:active):not(:disabled) > & {
+        background-color: var(--cm-magenta);
+      }
+
+      @nest button:disabled > & {
+        transition: background-color var(--transition-duration) ease-out;
+        background-color: #4c4c4c;
+      }
+    }
+  }
+
+  & > :is(ol, ul) {
+    overscroll-behavior-x: none;
+  }
+}
+
+main {
+  & > header {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: top center;
+
+    & > div {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      padding: 0 7.5%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+  }
+
+  & > section {
+    padding: 0 var(--section-padding);
+    position: relative;
+    --section-gap: min(6.75%, 5rem);
+
+    @media screen and (min-width: 48rem) {
+      display: flex;
+    
+      & > .heading {
+        flex-shrink: 0;
+        width: var(--section-heading-width);
+        
+        & p {
+          max-width: 23rem;
+          padding-left: 1rem;
+          margin-left: auto;
+        }
+
+        @nest #contact & {
+          min-width: 27rem;
+        }
+      }
+
+      & > .content {
+        padding-left: var(--section-gap);
+
+        @nest #events & {
+          max-width: 43rem;
+        }
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      & > .heading {
+        margin-bottom: 1.25rem;
+        & > h2 {
+          margin-bottom: 1.25rem;
+        }
+      }
+
+      & > * {
+        margin: 0 auto;
+        max-width: 32rem;
+      }
+    }
+  }
+
+  & > #about {
+    background: white;
+    @media screen and (min-width: 48rem) {
+      padding-top: 6.75rem;
+      padding-bottom: 6.125rem;
+      
+      & .content {
+        max-width: 32rem;
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  & > #events {
+    background: var(--shared-gradient) white;
+    background-position: 0 var(--banner-overhang);
+    background-repeat: no-repeat;
+    padding-top: calc(3rem + var(--banner-size));
+
+    &::before {
+      content: "";
+      display: block;
+      background-image: var(--banner-image);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      border-radius: 50%;
+
+      position: absolute;
+      left: var(--banner-left);
+      top: 0;
+      width: var(--banner-size);
+      height: var(--banner-size);
+    }
+
+    & > .content > .slider {
+      
+      @media screen and (min-width: 48rem) {
+        & > button {
+          display: none;
+        }
+      }
+
+      & > ol {
+        @media screen and (min-width: 48rem) {
+          max-height: 46rem;
+          margin: 0;
+          padding: 2rem;
+          border: none;
+          overflow-y: scroll;
+
+          background-color: white;
+          background-origin: border-box;
+          background-image:
+            linear-gradient(to bottom, white 50%, rgba(255, 255, 255, 0)),
+            linear-gradient(to top, white 50%, rgba(255, 255, 255, 0)),
+            radial-gradient(ellipse at top, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0)),
+            radial-gradient(ellipse at bottom, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0));
+          background-size: 100% 10rem, 100% 10rem, 150% 4rem, 150% 4rem;
+          background-position: center top, center bottom, center top, center bottom;
+          background-repeat: no-repeat;
+          background-attachment: local, local, scroll, scroll;
+
+          & > li {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+          }
+        }
+        @media not screen and (min-width: 48rem) {
+          width: 100%;
+          border-width: 0.25rem;
+          display: grid;
+          grid-auto-columns: 100%;
+          grid-auto-flow: column;
+          padding: 0 0 0.625rem 0;
+          overflow-x: scroll;
+          scroll-snap-type: x mandatory;
+
+          & a {
+            & article {
+              & time {
+                text-align: right;
+              }
+
+              & h3 {
+                text-align: right;
+              }
+            }
+          }
+        }
+
+        & > li {
+          max-height: 46rem;
+          margin: 0;
+          padding: 0;
+          border-width: 1.5rem 0.5rem;
+          border: solid transparent;
+          
+          list-style: none;
+          overflow-y: scroll;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+
+          @media screen and (min-width: 48rem) {
+            &:not(:last-child) {
+              margin-bottom: 1.5rem;
+            }
+            &:last-child {
+              margin-bottom: 0.5rem;
+            }
+          }
+          @media not screen and (min-width: 48rem) {
+          }
+
+          & > a {
+            text-decoration: unset;
+            color: unset;
+            display: block;
+            border: var(--outline-width) dotted transparent;
+
+            &:focus-visible {
+              outline: none;
+              border-color: var(--cm-purple);
+            }
+
+            & > article {
+              padding: 0.5rem;
+
+              & time {
+                display: block;
+                font-size: 1.5rem;
+                color: var(--cm-purple);
+                font-weight: 700;
+              }
+      
+              & h3 {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 48rem) {
+      --banner-size: clamp(23rem, 37vw, 34rem);
+      --banner-left: calc(var(--section-heading-width) * var(--section-content-ratio) + var(--section-padding));
+      --banner-overhang: 3rem;
+      padding-bottom: 6.25rem;
+
+      & > .content > .button {
+        display: none;
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      --banner-size: clamp(10rem, 48vw, 23rem);
+      --banner-left: 26vw;
+      --banner-overhang: 1.5rem;
+      padding-bottom: 2rem;
+
+      & > .heading > .button {
+        display: none;
+      }
+      & > .content > .button {
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  & > #memoir {
+    background-color: black;
+    overflow: hidden;
+
+    & > .heading {
+      color: white;
+    }
+
+    & > .content {
+      --distance-from-viewport-edge: calc(-1 * var(--section-padding) / var(--section-content-ratio));
+      
+      background: var(--book-image), var(--fade-background), var(--banner-image);
+      background-size: auto 100%, 26rem 100%, cover;
+      background-position: right -2rem center, right -2rem center, left center;
+      background-repeat: no-repeat;
+      aspect-ratio: 13 / 7;
+      max-width: 64vw;
+    }
+
+    @media screen and (min-width: 48rem) {
+      --fade-background: linear-gradient(to right, rgba(255, 255, 255, 0), white 20%);
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 36%;
+      grid-gap: var(--section-gap);
+
+      background-image: linear-gradient(to left, white, white);
+      background-position: left calc(var(--section-content-edge) + 5rem) top 0;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      & > .heading {
+        width: auto;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+
+      & > .content {
+        height: 100%;
+        background-color: white;
+        padding-left: 0;
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      --fade-background: none;
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100vw;
+      
+      & > .heading {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      & > .content {
+        width: 100vw;
+        max-width: none;
+        margin-right: var(--distance-from-viewport-edge);
+        margin-left: var(--distance-from-viewport-edge);
+      }
+    }
+  }
+
+  & > #projects {
+    background: var(--shared-gradient) white;
+    background-position: 0 -115rem;
+    background-repeat: no-repeat;
+    background-size: auto var(--shared-gradient-height);
+
+    @media screen and (min-width: 48rem) {
+      padding-top: 6.25rem;
+      padding-bottom: 6.25rem;
+    }
+    @media not screen and (min-width: 48rem) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    & > .content {
+      width: 100%;
+      
+      @media screen and (min-width: 48rem) {
+        max-width: calc(100vw * var(--section-content-ratio) * (100% - var(--section-heading-width)));
+      }
+
+      & > .slider {
+        @media screen and (min-width: 48rem) {
+          --gap-size: 1.25rem;
+        }
+        @media not screen and (min-width: 48rem) {
+          --gap-size: 0.625rem;
+        }
+
+        & > ul {
+          width: 100%;
+          max-width: 47rem;
+          overflow-x: scroll;
+          scroll-snap-type: x mandatory;
+          display: grid;
+          grid-auto-columns: calc((100% - var(--gap-size)) / 2 - 0.5px);
+          grid-auto-flow: column;
+          column-gap: var(--gap-size);
+          row-gap: var(--gap-size);
+          margin: 0 var(--outline-width);
+          padding: 0 0 var(--gap-size);
+
+          @media screen and (min-width: 48rem) and (max-width: 62rem) {
+            grid-template-rows: 1fr 1fr 1fr;
+          }
+          @media not screen and (min-width: 48rem) and (max-width: 62rem)  {
+            grid-template-rows: 1fr 1fr;
+          }
+
+          & > li {
+            --aspect-ratio: 34 / 25;
+            list-style: none;
+            scroll-snap-align: start;
+            aspect-ratio: var(--aspect-ratio);
+
+            & > a {
+              text-decoration: unset;
+              color: unset;
+              display: block;
+              width: 100%;
+              aspect-ratio: var(--aspect-ratio);
+              border: var(--outline-width) dotted transparent;
+
+              &:focus-visible {
+                outline: none;
+                border-color: var(--cm-purple);
+              }
+
+              & > img {
+                border: var(--outline-width) solid transparent;
+                display: block;
+                width: 100%;
+                aspect-ratio: var(--aspect-ratio);
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > #contact {
+    color: white;
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+
+    &:target {
+      box-shadow: 0 0 0.5rem 0.25rem var(--cm-magenta-half), inset 0 0 0.5rem 0.5rem var(--cm-magenta-half);
+    }
+
+    & .heading {
+      & > h2 {
+        margin-bottom: 0.5rem;
+      }
+      & > p {
+        text-align: right;
+        margin-bottom: 3rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      & label {
+        display: block;
+        position: relative;
+
+        & span {
+          text-transform: uppercase;
+          right: 0;
+          position: absolute;
+          bottom: 0.9rem;
+          font-size: 1.25rem;
+          user-select: none;
+        }
+        
+        & :is(input, textarea) {
+          font-size: 1.25rem;
+          font-family: "Barlow";
+          color: white;
+          display: block;
+          width: 100%;
+          margin-bottom: 1rem;
+          background: none;
+          border: white solid;
+          border-width: 0 0 0.1875rem;
+
+          &:is(input) {
+            height: 3rem;
+          }
+          &:is(textarea) {
+            min-height: 10rem;
+            padding-bottom: 0.65rem;
+            resize: vertical;
+          }
+
+          &:focus-visible {
+            outline: var(--outline-width) dotted rgba(255, 255, 255, 0.5);
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 48rem) {
+      padding-top: 3.5rem;
+      background-image: var(--banner-image);
+      background-position: left top;
+      background-size: cover;
+    }
+    @media not screen and (min-width: 48rem) {
+      background: linear-gradient(236.61deg, #6B1B97 33.61%, #A51767 80.97%);
+    }
+  }
+
+  & > #media {
+    display: block;
+    overflow: hidden;
+
+    background: var(--shared-gradient) white;
+    background-position: 0 -203rem;
+    background-repeat: no-repeat;
+    background-size: auto var(--shared-gradient-height);
+
+    & > ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      @media screen and (min-width: 48rem) {
+        margin-top: 3.5rem;
+      }
+      @media not screen and (min-width: 48rem) {
+        margin-top: 1.5rem;
+      }
+
+      & > li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        
+        & > a {
+          --indicator-width: 0.125rem;
+          --indicator-color: rgb(178, 178, 178);
+          border: 0.25rem solid white;
+          outline: none;
+          overflow: hidden;
+          box-shadow: 0 0 0 var(--indicator-width) var(--indicator-color);
+
+          &:is(:hover, :focus-visible, :active):not(.current) {
+            --indicator-width: 0.25rem;
+            --indicator-color: 0.25rem;
+  
+            &:is(:hover, :focus-visible) {
+              --indicator-color: var(--cm-magenta);
+            }
+            &:active{
+              --indicator-color: var(--cm-magenta-half);
+            }
+          }
+
+          &.current {
+            --indicator-width: 0.25rem;
+            --indicator-color: var(--cm-purple);
+          }
+        }
+
+        & > a, & > a > img {
+          border-radius: 50%;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        & span {
+          display: block;
+          font-weight: 600;
+          text-align: center;
+          margin-top: 0.5rem;
+          color: rgb(76, 76, 76);
+
+          @nest .current ~ & {
+            font-weight: 700;
+            color: var(--cm-purple);
+          }
+        }
+
+        @media screen and (min-width: 48rem) {
+          width: 6rem;
+          height: 6rem;
+          margin: 0 3rem 3.5rem 0;
+        }
+        @media not screen and (min-width: 48rem) {
+          width: 3.25rem;
+          height: 3.25rem;
+          margin: 0 1.25rem 1.5rem 0;
+        }
+      }
+
+    }
+    
+    & > .figures {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      overflow: hidden;
+      scroll-behavior: auto;
+      max-width: 67.5rem;
+      margin: 0 auto 4rem;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+
+      & > figure {
+        display: block;
+        width: 100%;
+        scroll-snap-align: start;
+
+        & > :is(iframe, a) {
+          display: block;
+          aspect-ratio: 16 / 9;
+          width: 100%;
+          overflow: hidden;
+
+          & img {
+            width: 100%;
+            object-size: cover;
+          }
+        }
+
+        & > figcaption {
+          min-height: 5rem;
+          padding: 1.25rem 1.75rem;
+          background-color: var(--cm-purple);
+          color: white;
+          font-size: 1.15rem;
+          
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+
+          & .title {
+            font-size: 1.20rem;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    & .button {
+      margin: 1.5rem auto 0;
+    }
+
+    @media screen and (min-width: 48rem) {
+      padding-bottom: 4rem;
+
+      & .button {
+        width: 32rem;
+      }
+
+      & > h2 {
+        margin-top: 5rem;
+        width: var(--section-heading-width);
+        min-width: 27rem;
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      padding-bottom: 3rem;
+      
+      & .button {
+        width: 100%;
+      }
+
+      & > h2 {
+        margin-top: 3.5rem;
+      }
+    }
+  }
+
+  & > #http404 {
+    padding-top: 35vh;
+
+    @media screen and (min-width: 48rem) {
+      height: calc(100vh - var(--footer-height));
+    }
+    @media not screen and (min-width: 48rem) {
+      height: calc(100vh - var(--footer-height) - var(--default-social-bar-height));
+    }
+  }
+}
+
+#close-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+nav {
+  & .menu-icon {
+  &:is(:hover, :focus-visible):not(:active){
+    /* The shadow aids contrast and mitigates color vibration. */
+    filter: drop-shadow(0 0 0.25rem rgba(255, 255, 255, 0.25));
+
+    & > picture {
+      background: var(--contact-hover-mask);
+      background-color: var(--cm-purple);
+    }
+  }
+  /* A little bit of JavaScript on the outside helps us maintain background
+     contrast as various elements scroll under the social bar. */
+  & > picture {
+    --default-color: #111;
+    --hero-mask: fixed linear-gradient(to left, white, white) var(--hero-position) / var(--hero-size)  no-repeat;
+    --memoir-mask: fixed linear-gradient(to left, #eee, #eee) var(--memoir-position) / var(--memoir-size)  no-repeat;
+    --contact-mask: fixed linear-gradient(to left, black, black) var(--contact-position) / var(--contact-size)  no-repeat;
+    --contact-hover-mask: fixed linear-gradient(to left, white, white) var(--contact-position) / var(--contact-size)  no-repeat;
+
+    background: var(--hero-mask), var(--contact-mask),  var(--memoir-mask);
+    background-attachment: fixed;
+    background-color: var(--default-color);
+  }
+  }
+
+  &#main-menu {
+    z-index: 1;
+    top: 0;
+    right: 0;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: right;
+    user-select: none;
+
+    border-bottom-left-radius: 1.25rem;
+    &:focus-visible {
+      outline: 0.25rem solid var(--cm-magenta);
+    }
+  
+    @media screen and (min-width: 48rem) {
+      position: fixed;
+    }
+    @media not screen and (min-width: 48rem) {
+      position: absolute;
+    }
+  
+    &:not(:focus-within, :target) {
+      pointer-events: none;
+    }
+  
+    & :is(.open-button, .close-button) {
+      display: block;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      border: none;
+      
+      & > picture {
+        content: '';
+        display: block;
+      }
+  
+      &.open-button {
+        position: absolute;
+        top: 2.25rem;
+        pointer-events: all;
+        transition: opacity 0.1s ease-out;
+        
+        @nest #main-menu:is(:focus-within, :target) & {
+          opacity: 0;
+        }
+
+        @media screen and (min-width: 48rem) {
+          /* The 8 is just a magic number. */
+          right: clamp(0.25rem, calc(100vw - 48rem) / 8, 2.25rem);
+        }
+        @media not screen and (min-width: 48rem) {
+          right: 2.25rem;
+        }
+
+        & > picture {
+          height: 2.5rem;
+          width: 2.5rem;
+          margin: 0.25rem;
+          clip-path: url(#menu-button-clip-path);
+        }
+      }
+  
+      &.close-button {
+        width: min-content;
+        margin-left: auto;
+        padding: 0 0 1.5rem 1.5rem;
+  
+        & > picture {
+          height: 1.5rem;
+          width: 1.5rem;
+          background-color: white;
+          clip-path: url(#close-button-clip-path);
+    
+          @nest .close-button:is(:hover, :focus-visible):not(:active) > & {
+            background-color: var(--cm-magenta);
+          }
+        }
+      }
+    }
+  
+    & > aside {
+      --padding: 2.5rem;
+      position: relative;
+      z-index: 1;
+      padding: var(--padding);
+      background: var(--cm-purple);
+      border-bottom-left-radius: 1.25rem;
+  
+      @nest #main-menu:not(:focus-within, :target) & {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.1s ease-out, visibility 0.1s step-end;
+      }
+  
+      & > ul {
+        margin: 0;
+        padding: 0;
+  
+        & > li {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+  
+          & > a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.625rem var(--padding);
+            margin: 0 calc(-1 * var(--padding));
+  
+            &:is(:hover, :focus-visible):not(:active) {
+              text-shadow: 1px 1px rgba(0, 0, 0, .75) ;
+              color: var(--cm-magenta);
+            }
+  
+            &:focus-visible {
+              outline: var(--outline-width) dotted var(--cm-magenta);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  &#social-menu {
+    --expand-duration: var(--transition-duration);
+    --expand-timing: ease-out;
+    position: fixed;
+    z-index: 1;
+    
+    &:focus-visible {
+      outline: none;
+    }
+  
+    & li {
+      display: grid;
+      place-content: center;
+      list-style: none;
+      user-select: none;
+  
+      & > a {
+        width: var(--social-icon-size);
+        height: var(--social-icon-size);
+        transition-property: height, width;
+        &:focus-visible {
+          outline: var(--outline-width) dotted var(--cm-magenta);
+        }
+  
+        & > picture {
+          width: var(--social-icon-size);
+          height: var(--social-icon-size);
+          top: 0;
+          left: 0;
+          position: absolute;
+          transition-property: height, width, background-color;
+          
+          /* These clips paths come from an inline SVG element. */
+          &.discord-icon {
+            clip-path: url(#discord-clip-path);
+          }
+          &.linkedin-icon {
+            clip-path: url(#linkedin-clip-path);
+          }
+          &.instagram-icon {
+            clip-path: url(#instagram-clip-path);
+          }
+          &.github-icon {
+            clip-path: url(#github-clip-path);
+          }
+          &.twitch-icon {
+            clip-path: url(#twitch-clip-path);
+          }
+          &.tiktok-icon {
+            clip-path: url(#tiktok-clip-path);
+          }
+          &.twitter-icon {
+            clip-path: url(#twitter-clip-path);
+          }
+          &.youtube-icon {
+            clip-path: url(#youtube-clip-path);
+          }
+        }
+      }
+    }
+  
+    & ul {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+      
+    @media screen and (min-width: 48rem) {
+      --social-icon-size: 2.5rem;
+      left: 1.5%;
+      top: 0;
+      bottom: 0;
+      width: var(--social-icon-size);
+
+      &:focus-visible {
+        background-color: var(--cm-purple-half);
+      }
+
+      & ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        height: 60%;
+        top: 20%
+      }
+  
+      & li {
+        position: relative;
+      }
+    }
+    @media not screen and (min-width: 48rem) {
+      --social-icon-size: var(--default-social-icon-size);
+      --social-bar-height: calc(3.5 * var(--social-icon-size));
+      width: 100vw;
+      bottom: 0;
+      height: var(--social-bar-height);
+      background-color: black;
+      padding: calc(1.25 * var(--social-icon-size));
+      transition-property: height, padding, bottom;
+
+      &:focus-visible {
+        box-shadow: 0 0 0.5rem 0.25rem var(--cm-purple-half), inset 0 0 0.5rem 0.5rem var(--cm-purple-half);
+      }
+    
+      &, & *, &::before, &::after  {
+        transition-duration: var(--expand-duration);
+        transition-timing-function: var(--expand-timing);
+      }
+
+      & ul {
+        /* This prevents the visitors from following a link while trying to expand the drawer. */
+        pointer-events: none;
+      }
+
+      & li {
+        position: absolute;
+        /* Reserve space for the arrow icon and divide the remaining space evenly.
+           Search for 'fencepost' in this document for a more thorough explanation.
+        */
+        left: calc((100% - var(--social-icon-size)) / 7 * (var(--column-position) - 1));
+        transition-property: left;
+  
+        & > a {
+          &:is(:hover, :focus-visible):not(:active) > picture::before {
+            background-color: var(--cm-purple);
+            content: "";
+            display: block;
+            height: 100%;
+            width: 100%;
+          }
+  
+          & > picture {
+            background: gray;
+          }
+        }
+  
+        /* The first 4 icons will hug the top edge; the rest will hug the bottom */
+        &:nth-child(-n + 4) {
+          top: 0;
+        }
+        &:nth-child(n + 5) {
+          bottom: 0;
+        }
+        
+        &:nth-child(1) {
+          --column-position: 1;
+        }
+        &:nth-child(2) {
+          --column-position: 2;
+        }
+        &:nth-child(3) {
+          --column-position: 3;
+        }
+        &:nth-child(4) {
+          --column-position: 4;
+        }
+        &:nth-child(5) {
+          --column-position: 5;
+        }
+        &:nth-child(6) {
+          --column-position: 6;
+        }
+        &:nth-child(7) {
+          --column-position: 7;
+        }
+        &:nth-child(8) {
+          --column-position: 8;
+        }
+      }
+  
+      & .overlay {
+        position: fixed;
+        background: black;
+        cursor: default;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+      }
+      &:focus-within .overlay {
+        bottom: var(--social-bar-height);
+        pointer-events: all;
+        top: 0;
+        opacity: 0.5;
+        transition-property: bottom, opacity, bottom;
+      }
+      &:not(:focus-within) .overlay {
+        /* step-end allows the overlay to maintain its size during fadeout. */
+        transition:
+          bottom var(--expand-duration) var(--expand-timing),
+          opacity var(--expand-duration) var(--expand-timing),
+          top var(--expand-duration) step-end;
+        pointer-events: none;
+      }
+
+      /* This is the "up" icon that prompts interaction. Classic CSS border art. */
+      &::after {
+        --presence: 1;
+        position: absolute;
+        content: "";
+        border: solid transparent;
+        opacity: var(--presence);
+        border-bottom-color: var(--cm-purple);
+        border-width: 0 calc(2 * var(--social-icon-size) / 6) calc(11 * var(--social-icon-size) / 20);
+        bottom: calc((1.25 * var(--presence) + 1 / 5) * var(--social-icon-size));
+        right: calc((1.25 * var(--presence) + 1 / 6) * var(--social-icon-size));
+        transition-property: bottom, right, opacity, border-width;
+      }
+  
+      &:focus-within {
+        --social-icon-size: calc(var(--default-social-icon-size) * 1.75);
+        --social-bar-height: calc(4.25 * var(--social-icon-size));
+        padding: calc(0.75 * var(--social-icon-size)) calc(1.15 * var(--social-icon-size));
+
+        &::after {
+          --presence: 0;
+        }
+
+        & ul {
+          & li {
+            /* Absolutely-positioned space-between fencepost algorithm:
+               Reserve enough room for the last icon, without any additional margin;
+               then divide the remaining space into equal segments and
+               position each icon at the left edge of its segment,
+               thereby leaving an equal amount of space between icons.
+               In general, for n icons of width w and (i: 0 -> n - 1)
+               left(i) := (100% - w) / (n - 1) * i
+               Fun fact: This works for non-integer n, as well.
+            */
+            left: calc((100% - var(--social-icon-size)) / 3 * (var(--column-position) - 1));
+    
+            & > a {
+              pointer-events: all;
+  
+              & > picture {
+              background-color: white;
+              }
+            }
+    
+            /* Distribute the icons across 4 columns;
+               their top and bottom properties will separate them into rows.
+            */
+            &:nth-child(1) {
+              --column-position: 1;
+            }
+            &:nth-child(2) {
+              --column-position: 2;
+            }
+            &:nth-child(3) {
+              --column-position: 3;
+            }
+            &:nth-child(4) {
+              --column-position: 4;
+            }
+            &:nth-child(5) {
+              --column-position: 1.5;
+            }
+            &:nth-child(6) {
+              --column-position: 2.5;
+            }
+            &:nth-child(7) {
+              --column-position: 3.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background: linear-gradient(90deg, #8D2BC7 5.07%, #DC2588 91.95%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: var(--footer-line-height);
+  color: white;
+  padding: var(--footer-padding) 0;
+  text-align: center;
+
+  & a {
+    color: white;
+
+    &:not(:hover) {
+      text-decoration: none;
+    }
+  }
+}
+
+.cards {
+  width: 0;
+  height: 0;
+
+  & .card {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    
+    &:not(:target) {
+      visibility: hidden;
+      transition: visibility var(--transition-duration) step-end;
+      pointer-events: none;
+
+      & > a {
+        opacity: 0;
+      }
+    
+      & > article {
+        transition: opacity 0.05s ease-out;
+        opacity: 0;
+      }
+    }
+
+    & > a {
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      cursor: default;
+      transition: opacity var(--transition-duration) ease-out;
+    }
+    
+    & > article {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
+
+      background: white;
+      border: solid white 0.5rem;
+      border-radius: 1.25rem;
+
+      padding-top: 2.5rem;
+      padding-bottom: 1.5rem;
+
+      @media screen and (min-width: 48rem) {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      @media not screen and (min-width: 48rem) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      & * {
+        text-align: center;
+      }
+      
+      & > h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      & > div {
+        color: #808080;
+        font-size: 1.125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        & span {
+          display: block;
+          margin-top: 1rem;
+        }
+      }
+
+      & > a.button {
+        width: 14.5rem;
+        max-width: 100%;
+        margin: 2.25rem auto 0;
+      }
+
+      & > a.close-button {
+        position: absolute;
+        height: 2.5rem;
+        width: 2.5rem;
+        top: var(--outline-width);
+        right: var(--outline-width);
+
+        &::before {
+          content: '';
+          display: block;
+          height: 1.5rem;
+          width: 1.5rem;
+          margin: 0.5rem;
+          background-color: var(--cm-purple);
+          clip-path: url(#close-button-clip-path);
+        }
+
+        
+        &:is(:hover, :active, :focus-visible) {
+          &::before {
+            background-color: var(--cm-magenta);
+          }
+        }
+      }
+
+      @nest .event-card & {
+        width: 30rem;
+
+        &::before {
+          content: '';
+          display: block;
+          background: var(--card-icon-background);
+          clip-path: url(#calendar-clip-path);
+          width: 6.25rem;
+          height: 6.25rem;
+          margin: 0 auto 1.25rem;
+        }
+      }
+
+      @nest .project-card & {
+        width: 40rem;
+
+        & img {
+          aspect-ratio: 11 / 5;
+          width: 100%;
+          margin-top: 0.625rem;
+          margin-bottom: 1.25rem;
+        }
+      }
+      
+      @nest .contact-card & {
+        width: 20rem;
+
+        @nest #contact-success & {
+          &::before {
+            content: '';
+            display: block;
+            background: var(--card-icon-background);
+            clip-path: url(#message-sent-clip-path);
+            width: 6.25rem;
+            height: 6.25rem;
+            margin: 0 auto 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+#clip-paths {
+  display: block;
+  width: 0;
+  height: 0;
+}

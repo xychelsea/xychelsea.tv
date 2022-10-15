@@ -1,0 +1,12 @@
+<section id="contact" style='--banner-image: url("/images/{{ .Get "banner-image" }}");'>
+  <div class="heading">
+    <h2>{{ .Get "title"  | safeHTML }}</h2>
+    <p>{{ .Inner }}</p>
+    <form id="contact-form" method="POST" action="/submit">
+      <label><input name="name" required><span>Name</span></label>
+      <label><input name="email" type="email" required><span>Email</span></label>
+      <label><textarea name="message" required></textarea><span>Message</span></label>
+      <button class="button">Submit</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+Title = 'Decrypt'
+Slug = 'crypto-and-privacy'
+Label = "Decrypt"
+Description = '“Chelsea Manning’s Reluctant Return to Crypto and Renewed Passion for Privacy”'
+Embed = ''
+Thumbnail = 'crypto-and-privacy.webp'
+Link = 'https://decrypt.co/104746/chelsea-manning-crypto-privacy-nym'
+Banner = 'crypto-and-privacy.webp'
+Weight = 30

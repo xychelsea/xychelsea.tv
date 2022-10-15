@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}" />
+
+    {{ partial "style-tags.html" . }}
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {{ partial "social-metadata.html" . }}
+  </head>
+
+  <body>
+    {{ partial "menu.html" . }}
+    {{- block "main" . }}{{- end }}
+    {{ partial "footer.html" . }}
+    {{ partial "social-menu.html" . }}
+
+    {{ partial "clip-paths.html" . }}
+    {{ partial "script-tags.html" . }}
+  </body>
+</html>

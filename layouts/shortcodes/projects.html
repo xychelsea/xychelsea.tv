@@ -1,0 +1,28 @@
+{{ $projects := sort .Site.Data.projects "Name" }}
+{{ $projects := sort $projects "Weight" }}
+
+<section id="projects">
+  <div class="heading">
+    <h2>{{ .Get "title" | safeHTML }}</h2>
+    {{ .Inner }}
+  </div>
+  <div class="content">
+    <article class="slider">
+      <button title="scroll left">
+        <picture alt="">
+        </picture>
+      </button>
+      <ul>
+        {{ range $projects }}
+          <li>
+            {{ partial "project-preview.html" . }}
+          </li>
+        {{ end }}
+      </ul>
+      <button title="scroll right">
+        <picture alt="">
+        </picture>
+      </button>
+    </div>
+  </article>
+</section>

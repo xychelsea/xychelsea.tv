@@ -1,0 +1,7 @@
+<section id="about">
+  <h2 class="heading">{{ .Get "title" | safeHTML }}</h2>
+  <div class="content">
+    {{ .Inner | markdownify }}
+    <a class="button" href="https://readmetxt.xyz">Preorder Chelsea's Memoir</a>
+  </div>
+</section>

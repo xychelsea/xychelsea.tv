@@ -1,0 +1,5 @@
+Title = "Title"
+Description = 'A description; keep it short.'
+Embed = "https://www.youtube.com/embed/4d0EGIt1SPc" # This can be any embeddable URL, but bear in ming that the viewport will always be 16:9.
+Thumbnail = 'image-name.webp' # Ideally 88x88; bear the circular border in mind. Best to use a lower-kebab-case version of the title.
+Weight = 10 # Sort order in the listing. Higher weights fall lower down on the list; lighter weights rise to the top. You can even use negative weights if you want.

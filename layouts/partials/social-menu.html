@@ -1,0 +1,13 @@
+<nav id="social-menu" title="social media links" tabindex="0">
+  <a href="#close-menu" class="overlay" aria-hidden="true" tabindex="-1"></a>
+  <ul>
+    {{ range .Site.Menus.social }}
+      <li>
+        <a href="{{ .URL }}" class="menu-icon" title="{{ .Name }}">
+          <picture class="{{ lower (replace .Name ' ' '-') }}-icon" alt="">
+          </picture>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

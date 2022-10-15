@@ -1,0 +1,18 @@
+{{ $datetime := printf "%sT%02d:%02d:%02dZ" ((time .Date).Format "2006-01-02") .Time.Hour .Time.Minute .Time.Second }}
+{{ $datetime := time $datetime }}
+<aside class="card event-card" id='event-{{ .Slug }}' tabindex="0" data-title="{{ .Title }}">
+  <a href="#-" aria-hidden="true" tabindex="-1"></a>
+  <article>
+    <a class="close-button" href="#-" title="close"></a>
+    <h3>{{ .Title}}</h3>
+    <p>{{ .Description }}</p>
+    <div>
+      {{ if ne .Location "" }}<span>Location: {{ .Location | safeHTML }}</span>{{ end }}
+      <time>
+        <span>Date: {{ $datetime.Format "01/02/2006" }}</span>
+        <span>Time: {{ $datetime.Format "3:04 PM" }}</span>
+      </time>
+    </div>
+    <a class="button compact" href="{{ .Link }}">{{ .LinkText }}</a>
+  </article>
+</aside>

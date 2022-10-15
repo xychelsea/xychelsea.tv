@@ -1,0 +1,11 @@
+{{ $datetime := printf "%sT%02d:%02d:%02dZ" ((time .Date).Format "2006-01-02") .Time.Hour .Time.Minute .Time.Second }}
+{{ $datetime := time $datetime }}
+<a href="#event-{{ .Slug }}">
+  <article>
+    <time datetime='{{ $datetime.Format "2006-01-02T15:04:05Z" }}'>
+      Date: {{ $datetime.Format "01 / 02 / 2006" }}
+    </time>
+    <h3>{{ .Title }}</h3>
+    <p>{{ .Description }}</p>
+  </article>
+</a>

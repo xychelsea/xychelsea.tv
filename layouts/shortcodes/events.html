@@ -1,0 +1,31 @@
+{{ $events := .Site.Data.events }}
+{{ $events := sort $events "Time" }}
+{{ $events := sort $events "Date" }}
+{{ $events := where $events "Date" ">" now }}
+
+<section id="events" style='--banner-image: url("/images/{{ .Get "banner-image" }}");'>
+  <div class="heading">
+    <h2>{{ .Get "title" | safeHTML }}</h2>
+    <a class="button" href="#contact">Book Now</a>
+  </div>
+  <div class="content">
+    <article class="slider">
+      <button title="scroll left">
+        <picture alt="">
+        </picture>
+      </button>
+      <ol>
+        {{ range $events }}
+          <li>
+            {{ partial "event-preview.html" . }}
+          </li>
+        {{ end }}
+      </ol>
+      <button title="scroll right">
+        <picture alt="">
+        </picture>
+      </button>
+    </article>
+    <a class="button" href="#contact">Book Now</a>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+{{ $media := sort .Site.Data.media "Title" }}
+{{ $media := sort $media "Weight" }}
+
+<section id="media">
+  <h2>{{ .Get "title" | safeHTML }}</h2>
+  <ul>
+    {{ range $media }}
+      <li>
+        <a href="#{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
+          <img src="/images/media-thumbnails/{{ .Thumbnail }}" loading="lazy" alt="">
+        </a>
+        <span>{{ .Label }} </span>
+      </li>
+    {{ end }}
+  </ul>
+  <div class="figures">
+    {{ range $media }}
+      <figure id="{{ .Slug }}">
+        {{ if ne .Embed "" }}
+          <iframe
+            src="{{ .Embed }}"
+            loading="lazy"
+            title="video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            frameborder="0"
+          ></iframe>
+        {{ else }}
+          <a href="{{ .Link }}" ><img src="/images/media-banners/{{ .Banner }}" alt=""></a>
+        {{ end }}
+        <figcaption>
+          <p><span class="title">{{ .Title }}</span> / {{ .Description }}</p>
+        </figcaption>
+      </figure>
+    {{ end }}
+  </div>
+  <a href="#contact" class="button">Get In Touch</a>
+  <a href="https://readmetxt.xyz" class="button">Preorder Chelsea’s Memoir</a>
+</section>

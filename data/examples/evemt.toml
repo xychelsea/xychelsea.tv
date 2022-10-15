@@ -1,0 +1,7 @@
+Title = "Title"
+Slug = 'slug-formatted-like-this' # Best to use a lower-kebab-case version of the title.
+Description = 'A description; can be long if you want.'
+Date = 1999-12-25 # Format like yyyyy-mm-dd (as in ISO-8601).
+Time = 22:00:00 # Format like HH:MM:SS using 00-23 for the hour (also as in ISO-8601)
+Location = 'The event venue'
+Link = 'https://example.com' # Where the Register Now button should link to.

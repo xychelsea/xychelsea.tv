@@ -1,0 +1,9 @@
+<section id="memoir">
+  <div class="heading">
+    <h2>{{ .Get "title"  | safeHTML }}</h2>
+    {{ .Inner | markdownify }}
+    <a class="button" href="https://readmetxt.xyz">Preorder Now</a>
+  </div>
+  <div class="content" style='--banner-image: url("/images/{{ .Get "banner-image" }}"); --book-image: url("/images/{{ .Get "book-image" }}");'>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+Title = 'New York Times'
+Slug = 'long-lonely-road'
+Label = "NYT"
+Description = '“The Long, Lonely Road of Chelsea Manning”'
+Embed = ''
+Thumbnail = 'long-lonely-road.webp'
+Link = 'https://www.nytimes.com/2017/06/12/magazine/the-long-lonely-road-of-chelsea-manning.html'
+Banner = 'long-lonely-road.webp'
+Weight = 50
