@@ -18,4 +18,4 @@ docker run \
 	--rm \
 	--tty \
 	--volume `pwd`:/site \
-	xychelsea/hugo:latest
+	xychelsea/hugo:v0.104.3
