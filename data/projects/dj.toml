@@ -1,0 +1,8 @@
+Title = 'DJing'
+Slug = 'dj'
+Label = 'DJing'
+Description = ''
+Image = 'dj.webp'
+Link = '/#events'
+LinkText = 'See Upcoming Events'
+Weight = 20

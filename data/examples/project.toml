@@ -1,5 +1,9 @@
-Title = "Title"
-Slug = 'slug-formatted-like-this' # Best to use a lower-kebab-case version of the title.
+Title = "The Project Title"
+Slug = 'the-project-title' 
+Label = "Title"
 Description = 'A description; not too short, not too long.'
-Image = 'slug-formatted-like-this.webp' # Ideally 544x248. Best to keep the file name the same as the slug most of the time.
-Weight = 10 # Sort order in the listing. Higher weights fall lower down on the list; lighter weights rise to the top. You can even use negative weights if you want.
+# Ideally 700x350 pixels.
+Image = 'the-project-title.webp'
+# The Weight determines the sort order in the project listing.
+# Higher weights fall lower down on the list; lighter weights rise to the top.
+Weight = 10

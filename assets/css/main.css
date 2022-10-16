@@ -82,7 +82,7 @@
       rgba(0, 209, 255, var(--shared-gradient-opacity)) 186rem,
       rgba(255, 90, 148, var(--shared-gradient-opacity)) 268rem
     );
-  --shared-gradient-height: 280rem;
+  --shared-gradient-height: 290rem;
   --card-icon-background: linear-gradient(95deg, rgba(133, 0, 211, 0.8) -5%, rgba(207, 0, 112, 0.8) 115%);
   --outline-width: 0.125rem;
   --transition-duration: 0.2s;
@@ -469,16 +469,6 @@ main {
           overflow-y: scroll;
 
           background-color: white;
-          background-origin: border-box;
-          background-image:
-            linear-gradient(to bottom, white 50%, rgba(255, 255, 255, 0)),
-            linear-gradient(to top, white 50%, rgba(255, 255, 255, 0)),
-            radial-gradient(ellipse at top, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0)),
-            radial-gradient(ellipse at bottom, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0));
-          background-size: 100% 10rem, 100% 10rem, 150% 4rem, 150% 4rem;
-          background-position: center top, center bottom, center top, center bottom;
-          background-repeat: no-repeat;
-          background-attachment: local, local, scroll, scroll;
 
           & > li {
             padding: 0.5rem 1.5rem;
@@ -811,7 +801,7 @@ main {
     overflow: hidden;
 
     background: var(--shared-gradient) white;
-    background-position: 0 -203rem;
+    background-position: 0 -200rem;
     background-repeat: no-repeat;
     background-size: auto var(--shared-gradient-height);
 
@@ -1570,6 +1560,7 @@ footer {
           width: 100%;
           margin-top: 0.625rem;
           margin-bottom: 1.25rem;
+          object-fit: contain
         }
       }
       
