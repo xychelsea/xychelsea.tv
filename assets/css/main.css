@@ -2,12 +2,14 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: url("/fonts/barlow-regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Barlow";
   font-style: italic;
+  font-display: swap;
   src: url("/fonts/barlow-italic.woff2") format("woff2");
 }
 
@@ -15,6 +17,7 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
   src: url("/fonts/barlow-semibold.woff2") format("woff2");
 }
 
@@ -22,6 +25,7 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: url("/fonts/barlow-bold.woff2") format("woff2");
 }
 

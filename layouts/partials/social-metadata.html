@@ -4,4 +4,5 @@
 <meta property="og:url" content="{{ .Site.BaseURL }}" />
 <meta property="og:title" content="{{ .Site.Title }}" />
 <meta property="og:description" content="{{ .Site.Params.description }}" />
-<meta property="og:image" content="{{ path.Join .Site.BaseURL .Site.Params.socialCardBanner }}"/>
+{{ $base := urls.Parse .Site.BaseURL }}
+<meta property="og:image" content="{{ $base.JoinPath .Site.Params.socialCardBanner }}"/>
