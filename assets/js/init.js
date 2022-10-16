@@ -212,9 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const link = mediaSection.querySelector(`a[href="${hash}"]`) || mediaSection.querySelector(`a`);
-    const figure = mediaSection.querySelector(`figure${hash}`)  || mediaSection.querySelector(`figure`);
+    const figure = figures.querySelector(`figure${hash}`) || mediaSection.querySelector(`figure`);
     link.classList.add('current');
     figure.classList.add('current');
+  
+    const left = figure.getBoundingClientRect().left;
+    figures.scrollTo(figures.scrollLeft + left, 0);
   }
 
   // Select the current (or first) item on load.
