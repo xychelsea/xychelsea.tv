@@ -6,7 +6,7 @@
   <ul>
     {{ range $media }}
       <li>
-        <a href="#{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
+        <a href="#media-{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
           <img src="/images/media-thumbnails/{{ .Thumbnail }}" loading="lazy" alt="">
         </a>
         <span>{{ .Label }} </span>
@@ -15,7 +15,7 @@
   </ul>
   <div class="figures">
     {{ range $media }}
-      <figure id="{{ .Slug }}">
+      <figure id="media-{{ .Slug }}">
         {{ if ne .Embed "" }}
           <iframe
             src="{{ .Embed }}"
