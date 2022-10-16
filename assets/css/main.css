@@ -104,6 +104,10 @@
   }
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0 0 var(--social-bar-gutter);
   font-family: "Barlow", sans-serif;
@@ -338,7 +342,7 @@ b, strong {
 
       @nest button:disabled > & {
         transition: background-color var(--transition-duration) ease-out;
-        background-color: #4c4c4c;
+        background-color: rgb(178, 178, 178);
       }
     }
   }
@@ -467,12 +471,11 @@ main {
           padding: 2rem;
           border: none;
           overflow-y: scroll;
-
           background-color: white;
 
           & > li {
             padding: 0.5rem 1.5rem;
-            background: transparent;
+            background-color: white;
           }
         }
         @media not screen and (min-width: 48rem) {
@@ -916,6 +919,7 @@ main {
           background-color: var(--cm-purple);
           color: white;
           font-size: 1.15rem;
+          margin-top: -0.5px;
           
           display: flex;
           justify-content: center;
