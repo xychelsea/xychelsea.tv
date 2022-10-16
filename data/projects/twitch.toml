@@ -1,7 +1,7 @@
 Title = 'Streaming on Twitch'
 Slug = 'twitch'
 Label = 'Twitch'
-Description = 'Chelsea’s Twitch channel is a mix of casual gaming and teaching about machine learning and cryptography.'
+Description = 'Chelsea’s Twitch channel mixes casual gaming with teaching about machine learning and cryptography.'
 Image = 'twitch.webp'
 Link = 'https://www.twitch.tv/xychelsea87'
 LinkText = 'Watch on Twitch'
