@@ -5,4 +5,4 @@ Description = ''
 Image = 'dj.webp'
 Link = '/#events'
 LinkText = 'See Upcoming Events'
-Weight = 20
+Weight = 30
