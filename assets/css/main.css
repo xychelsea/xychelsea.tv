@@ -2,12 +2,14 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: url("/fonts/barlow-regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Barlow";
   font-style: italic;
+  font-display: swap;
   src: url("/fonts/barlow-italic.woff2") format("woff2");
 }
 
@@ -15,6 +17,7 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
   src: url("/fonts/barlow-semibold.woff2") format("woff2");
 }
 
@@ -22,6 +25,7 @@
   font-family: "Barlow";
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: url("/fonts/barlow-bold.woff2") format("woff2");
 }
 
@@ -82,7 +86,7 @@
       rgba(0, 209, 255, var(--shared-gradient-opacity)) 186rem,
       rgba(255, 90, 148, var(--shared-gradient-opacity)) 268rem
     );
-  --shared-gradient-height: 280rem;
+  --shared-gradient-height: 290rem;
   --card-icon-background: linear-gradient(95deg, rgba(133, 0, 211, 0.8) -5%, rgba(207, 0, 112, 0.8) 115%);
   --outline-width: 0.125rem;
   --transition-duration: 0.2s;
@@ -102,6 +106,10 @@
     --shared-gradient-opacity: 0.1;
     --social-bar-gutter: calc(3.5 * var(--default-social-icon-size) - 0.5px);
   }
+}
+
+html {
+  overscroll-behavior: none;
 }
 
 body {
@@ -338,7 +346,7 @@ b, strong {
 
       @nest button:disabled > & {
         transition: background-color var(--transition-duration) ease-out;
-        background-color: #4c4c4c;
+        background-color: rgb(178, 178, 178);
       }
     }
   }
@@ -467,22 +475,11 @@ main {
           padding: 2rem;
           border: none;
           overflow-y: scroll;
-
           background-color: white;
-          background-origin: border-box;
-          background-image:
-            linear-gradient(to bottom, white 50%, rgba(255, 255, 255, 0)),
-            linear-gradient(to top, white 50%, rgba(255, 255, 255, 0)),
-            radial-gradient(ellipse at top, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0)),
-            radial-gradient(ellipse at bottom, rgba(133, 0, 211, 0.15), rgba(221, 9, 131, 0));
-          background-size: 100% 10rem, 100% 10rem, 150% 4rem, 150% 4rem;
-          background-position: center top, center bottom, center top, center bottom;
-          background-repeat: no-repeat;
-          background-attachment: local, local, scroll, scroll;
 
           & > li {
             padding: 0.5rem 1.5rem;
-            background: transparent;
+            background-color: white;
           }
         }
         @media not screen and (min-width: 48rem) {
@@ -811,7 +808,7 @@ main {
     overflow: hidden;
 
     background: var(--shared-gradient) white;
-    background-position: 0 -203rem;
+    background-position: 0 -200rem;
     background-repeat: no-repeat;
     background-size: auto var(--shared-gradient-height);
 
@@ -926,6 +923,7 @@ main {
           background-color: var(--cm-purple);
           color: white;
           font-size: 1.15rem;
+          margin-top: -0.5px;
           
           display: flex;
           justify-content: center;
@@ -1570,6 +1568,7 @@ footer {
           width: 100%;
           margin-top: 0.625rem;
           margin-bottom: 1.25rem;
+          object-fit: contain
         }
       }
       

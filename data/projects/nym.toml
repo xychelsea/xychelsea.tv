@@ -1,0 +1,8 @@
+Title = 'Nym'
+Slug = 'nym'
+Label = 'Nym'
+Description = 'As part of the ambitious Nym project, Chelsea Manning is helping to build decentralized privacy infrastructure fit for the challenges of the modern Internet and beyond. Nym uses a decentralized "mixnet" to provide a new level of surveillance protection against powerful global adversaries.'
+Image = 'nym.webp'
+Link = 'https://nymtech.net/'
+LinkText = 'Learn more'
+Weight = 10
