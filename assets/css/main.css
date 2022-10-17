@@ -162,6 +162,10 @@ b, strong {
   font-weight: 600;
 }
 
+a, button {
+  touch-action: manipulation;
+}
+
 .button {
   display: block;
   margin-top: 2.375rem;
@@ -315,10 +319,11 @@ b, strong {
     outline: none;
     border: var(--outline-width) dotted transparent;
     margin-bottom: var(--gap-size);
-    width: 1.5rem;
+    width: 3rem;
     padding: 0;
     background: transparent;
     cursor: pointer;
+    padding-left: 1.5rem;
 
     &:focus-visible {
       border-color: var(--cm-purple);
@@ -328,8 +333,12 @@ b, strong {
       cursor: default;
     }
 
+    &:first-of-type {
+      margin-left: -1.5rem;
+    }
     &:last-of-type {
       transform: scaleX(-1);
+      margin-right: -1.5rem;
     }
 
     & > picture {
@@ -346,7 +355,7 @@ b, strong {
 
       @nest button:disabled > & {
         transition: background-color var(--transition-duration) ease-out;
-        background-color: rgb(178, 178, 178);
+        background-color: rgb(203, 203, 203);
       }
     }
   }
@@ -479,7 +488,6 @@ main {
 
           & > li {
             padding: 0.5rem 1.5rem;
-            background-color: white;
           }
         }
         @media not screen and (min-width: 48rem) {
@@ -491,6 +499,8 @@ main {
           padding: 0 0 0.625rem 0;
           overflow-x: scroll;
           scroll-snap-type: x mandatory;
+          touch-action: pan-x;
+
 
           & a {
             & article {
@@ -509,6 +519,7 @@ main {
           max-height: 46rem;
           margin: 0;
           padding: 0;
+          background-color: white;
           border-width: 1.5rem 0.5rem;
           border: solid transparent;
           
@@ -691,6 +702,7 @@ main {
           row-gap: var(--gap-size);
           margin: 0 var(--outline-width);
           padding: 0 0 var(--gap-size);
+          touch-action: pan-x;
 
           @media screen and (min-width: 48rem) and (max-width: 62rem) {
             grid-template-rows: 1fr 1fr 1fr;
