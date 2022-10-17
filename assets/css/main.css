@@ -1475,7 +1475,7 @@ footer {
       transform: translate(-50%, -50%);
 
       max-width: 90%;
-      max-height: 90%;
+      max-height: 75%;
       overflow: auto;
 
       background: white;
@@ -1484,6 +1484,8 @@ footer {
 
       padding-top: 2.5rem;
       padding-bottom: 1.5rem;
+
+      overscroll-behavior: none;
 
       @media screen and (min-width: 48rem) {
         padding-left: 2.5rem;
@@ -1522,7 +1524,7 @@ footer {
       }
 
       & > a.close-button {
-        position: absolute;
+        position: fixed;
         height: 2.5rem;
         width: 2.5rem;
         top: var(--outline-width);
@@ -1552,6 +1554,7 @@ footer {
         &::before {
           content: '';
           display: block;
+          position: relative;
           background: var(--card-icon-background);
           clip-path: url(#calendar-clip-path);
           width: 6.25rem;

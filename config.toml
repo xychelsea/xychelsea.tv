@@ -16,7 +16,7 @@ cleanDestinationDir = true
   weight = 10
 [[menu.main]]
   url = '/#events'
-  name = 'Speaking Engagements'
+  name = 'Upcoming Events'
   weight = 20
 [[menu.main]]
   url = '/#memoir'
