@@ -1,0 +1,9 @@
+Title = 'The View'
+Slug = 'the-view'
+Label = "View"
+Description = 'Chelsea Manning discusses “README.txt” on The View'
+Thumbnail = 'the-view.webp'
+Link = 'https://www.youtube.com/watch?v=pamayJ4kMCU'
+Embed = 'https://www.youtube.com/embed/pamayJ4kMCU'
+Banner = ''
+Weight = -10

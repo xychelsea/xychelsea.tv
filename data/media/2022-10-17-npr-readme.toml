@@ -1,0 +1,9 @@
+Title = 'NPR'
+Slug = 'npr-readme'
+Label = "NPR"
+Description = 'Chelsea Manning discusses “README.txt” with Trevor Noah'
+Embed = ''
+Thumbnail = 'npr-readme.webp'
+Link = 'https://www.npr.org/2022/10/17/1129416671/chelsea-manning-wikileaks-memoir-readme'
+Banner = 'npr-readme.webp'
+Weight = -20

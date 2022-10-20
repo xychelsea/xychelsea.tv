@@ -1,0 +1,9 @@
+Title = 'Washington Post'
+Slug = 'wapo-review'
+Label = "WaPo"
+Description = '“A memoir in which everything is classified and nothing is secret”'
+Embed = ''
+Thumbnail = 'wapo-review.webp'
+Link = 'https://www.washingtonpost.com/books/2022/10/18/chelsea-manning-readme-memoir-review/'
+Banner = 'wapo-review.webp'
+Weight = -50

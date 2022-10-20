@@ -3,16 +3,26 @@
 
 <section id="media">
   <h2>{{ .Get "title" | safeHTML }}</h2>
-  <ul>
-    {{ range $media }}
-      <li>
-        <a href="#media-{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
-          <img src="/images/media-thumbnails/{{ .Thumbnail }}" loading="lazy" alt="">
-        </a>
-        <span>{{ .Label }} </span>
-      </li>
-    {{ end }}
-  </ul>
+  <div class="slider">
+    <button title="scroll left">
+      <picture alt="">
+      </picture>
+    </button>
+    <ul>
+      {{ range $media }}
+        <li>
+          <a href="#media-{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
+            <img src="/images/media-thumbnails/{{ .Thumbnail }}" loading="lazy" alt="">
+          </a>
+          <span>{{ .Label }} </span>
+        </li>
+      {{ end }}
+    </ul>
+    <button title="scroll right">
+      <picture alt="">
+      </picture>
+    </button>
+  </div>
   <div class="figures">
     {{ range $media }}
       <figure id="media-{{ .Slug }}">

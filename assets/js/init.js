@@ -101,8 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTo(0);
 
     function setButtonStatus(scrollLeft = scrollContainer.scrollLeft) {
-      leftButton.disabled = scrollLeft < scrollContainer.clientWidth / 2;
-      rightButton.disabled = scrollLeft > scrollContainer.scrollWidth - 3 * scrollContainer.clientWidth / 2;
+      const rightEdge = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      leftButton.disabled = scrollLeft < 20;
+      rightButton.disabled = scrollLeft > rightEdge - 20;
     }
 
     leftButton.addEventListener('click', () =>
@@ -184,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize media section behavior.
 document.addEventListener('DOMContentLoaded', () => {
   const mediaSection = document.getElementById('media');
+  const list = mediaSection.querySelector('ul');
   const figures = mediaSection.querySelector('.figures');
 
   // Attach behavior to thumbnail links.
@@ -192,17 +194,25 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', (event) => {
       const hash = link.getAttribute('href');
       updateMediaSelection(hash);
-      window.location = hash;
-      const scrollY = window.scrollY;
-      document.documentElement.style.scrollBehavior = "auto";
-      window.requestAnimationFrame(() => {
-        window.scrollTo(0, scrollY);
-        
-        window.requestAnimationFrame(() => {
-          document.documentElement.style.scrollBehavior = null;
-        });
-      });
+      if (hash.startsWith("#media")) {
+        window.history.replaceState(null, '', hash);
+      } else {
+        window.location = hash;
+        preventAnchorScrolling();
+      }
       event.preventDefault();
+    });
+  }
+
+  function preventAnchorScrolling() {
+    const scrollY = window.scrollY;
+    document.documentElement.style.scrollBehavior = "auto";
+    window.requestAnimationFrame(() => {
+      window.scrollTo(0, scrollY);
+      
+      window.requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = null;
+      });
     });
   }
 
@@ -215,9 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const figure = figures.querySelector(`figure${hash}`) || mediaSection.querySelector(`figure`);
     link.classList.add('current');
     figure.classList.add('current');
-  
-    const left = figure.getBoundingClientRect().left;
-    figures.scrollTo(figures.scrollLeft + left, 0);
+
+    const linkLeft = figure.getBoundingClientRect().left;
+    list.scrollTo(figures.scrollLeft + linkLeft, 0);
+    const figureLeft = figure.getBoundingClientRect().left;
+    figures.scrollTo(figures.scrollLeft + figureLeft, 0);
   }
 
   // Select the current (or first) item on load.

@@ -2,8 +2,8 @@ Title = 'H3 Podcast'
 Slug = 'h3'
 Label = "H3"
 Description = 'Interview with Chelsea Manning'
-Embed = 'https://www.youtube.com/embed/SI9jHA2pDMQ'
 Thumbnail = 'h3.webp'
 Link = 'https://www.youtube.com/watch?v=ur-SI9jHA2pDMQ'
+Embed = 'https://www.youtube.com/embed/SI9jHA2pDMQ'
 Banner = ''
 Weight = 20

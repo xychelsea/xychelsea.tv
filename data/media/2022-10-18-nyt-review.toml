@@ -1,0 +1,9 @@
+Title = 'New York Times'
+Slug = 'nyt-review'
+Label = "NYT"
+Description = '“Why Chelsea Manning Went to WikiLeaks, and What It Cost Her”'
+Embed = ''
+Thumbnail = 'nyt-review.webp'
+Link = 'https://www.nytimes.com/2022/10/18/books/review/chelsea-manning-readme-txt-memoir.html'
+Banner = 'nyt-review.webp'
+Weight = -40

@@ -2,8 +2,8 @@ Title = 'EPFL Conference'
 Slug = 'epfl'
 Label = "EPFL"
 Description = '“The Future of Privacy and Data in Wartime”'
-Embed = 'https://www.youtube.com/embed/dZUxoVsrX3g'
 Thumbnail = 'epfl.webp'
 Link = 'https://www.youtube.com/watch?v=ur-dZUxoVsrX3g'
+Embed = 'https://www.youtube.com/embed/dZUxoVsrX3g'
 Banner = ''
 Weight = 40

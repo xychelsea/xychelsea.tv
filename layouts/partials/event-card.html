@@ -2,17 +2,19 @@
 {{ $datetime := time $datetime }}
 <aside class="card event-card" id='event-{{ .Slug }}' tabindex="0" data-title="{{ .Title }}">
   <a href="#-" aria-hidden="true" tabindex="-1"></a>
-  <article>
+  <div>
     <a class="close-button" href="#-" title="close"></a>
-    <h3>{{ .Title}}</h3>
-    <p>{{ .Description }}</p>
-    <div>
-      {{ if ne .Location "" }}<span>Location: {{ .Location | safeHTML }}</span>{{ end }}
-      <time>
-        <span>Date: {{ $datetime.Format "01/02/2006" }}</span>
-        <span>Time: {{ $datetime.Format "3:04 PM" }}</span>
-      </time>
-    </div>
+    <article>
+      <h3>{{ .Title}}</h3>
+      <p>{{ .Description }}</p>
+      <div>
+        {{ if ne .Location "" }}<span>Location: {{ .Location | safeHTML }}</span>{{ end }}
+        <time>
+          <span>Date: {{ $datetime.Format "01/02/2006" }}</span>
+          <span>Time: {{ $datetime.Format "3:04 PM" }}</span>
+        </time>
+      </div>
+    </article>
     <a class="button compact" href="{{ .Link }}">{{ .LinkText }}</a>
-  </article>
+  </div>
 </aside>

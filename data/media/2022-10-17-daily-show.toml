@@ -1,0 +1,9 @@
+Title = 'The Daily Show'
+Slug = 'daily-show'
+Label = "TDS"
+Description = 'Chelsea Manning discusses “README.txt” with Trevor Noah'
+Thumbnail = 'daily-show.webp'
+Link = 'https://www.youtube.com/watch?v=Ofkd1-P_LIo'
+Embed = 'https://www.youtube.com/embed/Ofkd1-P_LIo'
+Banner = ''
+Weight = -30
