@@ -1,2 +1,3 @@
 {{ $script := resources.Get "js/init.js" | resources.Minify | fingerprint "md5" }}
+<link rel="preload" href="{{ $script.RelPermalink }}" as="script" />
 <script src="{{ $script.RelPermalink }}" type="module"></script>
