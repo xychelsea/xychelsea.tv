@@ -4,5 +4,5 @@
 <meta property="og:url" content="{{ .Site.BaseURL }}" />
 <meta property="og:title" content="{{ .Site.Title }}" />
 <meta property="og:description" content="{{ .Site.Params.description }}" />
-{{ $base := urls.Parse .Site.BaseURL }}
-<meta property="og:image" content="{{ $base.JoinPath .Site.Params.socialCardBanner }}"/>
+{{ $banner := resources.Get .Site.Params.socialCardBanner | fingerprint "md5" }}
+<meta property="og:image" content="{{ $banner.RelPermalink }}"/>

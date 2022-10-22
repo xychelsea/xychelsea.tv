@@ -1,3 +1,4 @@
 <a href="#project-{{ .Slug }}" title="{{ .Title }}" >
-    <img src="/images/projects/{{ .Image }}" alt="" loading="lazy">
+  {{ $image := resources.Get (path.Join "/images/projects/" .Image) | fingerprint "md5" }}
+  <img src="{{ $image.RelPermalink }}" loading="lazy" alt="">
 </a>

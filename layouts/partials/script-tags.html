@@ -1,2 +1,2 @@
-{{ $script := resources.Get "js/init.js" | resources.Minify }}
+{{ $script := resources.Get "js/init.js" | resources.Minify | fingerprint "md5" }}
 <script src="{{ $script.RelPermalink }}" type="module"></script>

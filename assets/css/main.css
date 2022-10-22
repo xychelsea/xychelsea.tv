@@ -1,34 +1,3 @@
-@font-face {
-  font-family: "Barlow";
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url("/fonts/barlow-regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Barlow";
-  font-style: italic;
-  font-display: swap;
-  src: url("/fonts/barlow-italic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Barlow";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/barlow-semibold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Barlow";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/barlow-bold.woff2") format("woff2");
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
 
@@ -902,12 +871,17 @@ main {
               --indicator-width: 0.25rem;
               --indicator-color: var(--cm-purple);
             }
-          }
 
-          & > a, & > a > img {
-            border-radius: 50%;
-            display: block;
-            width: 100%;
+            &, & > img {
+              border-radius: 50%;
+              display: block;
+              width: 100%;
+            }
+
+            & > img {
+              aspect-ratio: 1 / 1;
+              object-fit: cover;
+            }
           }
 
           & span {
@@ -954,14 +928,16 @@ main {
         scroll-snap-align: start;
 
         & > :is(iframe, a) {
-          display: block;
-          aspect-ratio: 16 / 9;
-          width: 100%;
           overflow: hidden;
 
-          & img {
+          &, & > img {
+            display: block;
             width: 100%;
-            object-size: cover;
+            aspect-ratio: 16 / 9;
+          }
+
+          & img {
+            object-fit: cover;
           }
         }
 

@@ -1,6 +1,47 @@
-<link rel="preload" href="/fonts/barlow-regular.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/barlow-italic.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/barlow-semibold.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/barlow-bold.woff2" as="font" type="font/woff2" crossorigin />
-{{ $style := resources.Get "css/main.css" | postCSS | resources.Minify }}
+
+{{ $style := resources.Get "css/main.css" | postCSS | resources.Minify | fingerprint "md5" }}
+<link rel="preload" href="{{ $style.RelPermalink }}" as="style" />
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+{{ $barlowRegular := resources.Get "/fonts/barlow-regular.woff2" | fingerprint "md5" }}
+{{ $barlowItalic := resources.Get "/fonts/barlow-italic.woff2" | fingerprint "md5" }}
+{{ $barlowSemibold := resources.Get "/fonts/barlow-semibold.woff2" | fingerprint "md5" }}
+{{ $barlowBold := resources.Get "/fonts/barlow-bold.woff2" | fingerprint "md5" }}
+
+<link rel="preload" href="{{ $barlowRegular.RelPermalink }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ $barlowItalic.RelPermalink }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ $barlowSemibold.RelPermalink }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ $barlowBold.RelPermalink }}" as="font" type="font/woff2" crossorigin />
+
+<style>
+  @font-face {
+    font-family: "Barlow";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("{{ $barlowRegular.RelPermalink }}") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "Barlow";
+    font-style: italic;
+    font-display: swap;
+    src: url("{{ $barlowItalic.RelPermalink }}") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "Barlow";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("{{ $barlowSemibold.RelPermalink }}") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "Barlow";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("{{ $barlowBold.RelPermalink }}") format("woff2");
+  }
+</style>

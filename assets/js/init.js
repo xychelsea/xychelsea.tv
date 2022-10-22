@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
   */
   const hero = document.getElementById('hero');
   const memoir = document.getElementById('memoir');
-  const memoirContent = memoir.querySelector('.content');
   const contact = document.getElementById('contact');
   const html = document.documentElement;
   function setIconBackgroundPositions() {
@@ -72,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
   setIconBackgroundPositions();
 
   document.addEventListener('scroll',
-    (e) => {
+    () => {
       setIconBackgroundPositions();
     },
     { passive: true }
   );
   
   window.addEventListener('resize',
-    (e) => {
+    () => {
       setIconBackgroundPositions();
     },
     { passive: true }
@@ -149,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize form handling.
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
-  form.addEventListener('submit', (evemt) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     const button = form.querySelector('button');
     button.disabled = true;
@@ -189,12 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const figures = mediaSection.querySelector('.figures');
 
   // Attach behavior to thumbnail links.
-  const links = mediaSection.querySelectorAll('ul a');
-  for (const link of links) {
+  for (const link of list.querySelectorAll('a')) {
     link.addEventListener('click', (event) => {
       const hash = link.getAttribute('href');
       updateMediaSelection(hash);
-      if (hash.startsWith("#media")) {
+      if (window.location.hash.startsWith("#media")) {
         window.history.replaceState(null, '', hash);
       } else {
         window.location = hash;
@@ -217,29 +215,55 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateMediaSelection(hash) {
+    // Add style indicators.
     for (const current of mediaSection.querySelectorAll('.current')) {
       current.classList.remove('current');
     }
-
-    const link = mediaSection.querySelector(`a[href="${hash}"]`) || mediaSection.querySelector(`a`);
-    const figure = figures.querySelector(`figure${hash}`) || mediaSection.querySelector(`figure`);
+    const link = list.querySelector(`a[href="${hash}"]`) || list.querySelector(`a`);
+    const figure = figures.querySelector(`figure${hash}`) || figures.querySelector(`figure`);
     link.classList.add('current');
     figure.classList.add('current');
 
-    const linkLeft = figure.getBoundingClientRect().left;
-    list.scrollTo(figures.scrollLeft + linkLeft, 0);
-    const figureLeft = figure.getBoundingClientRect().left;
+    setScrollPositions(link, figure);
+
+    // Load iframe content.
+    const iframe = figure.querySelector('iframe');
+    if (iframe) {
+      if (iframe.hasAttribute('data-src')) {
+        const figure = iframe.parentElement;
+        figure.removeChild(iframe);
+        iframe.setAttribute('src', iframe.getAttribute('data-src'));
+        iframe.removeAttribute('data-src');
+        figure.insertBefore(iframe, figure.firstChild);
+      }
+    }
+  }
+
+  function setScrollPositions(link = list.querySelector('.current'), figure = figures.querySelector('.current')) {
+    const linkRect = link.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect()
+    const linkLeft = linkRect.left - listRect.left;
+    const linkRight = linkRect.right - listRect.right;
+    if (linkLeft < 0) list.scrollTo(list.scrollLeft + linkLeft, 0);
+    if (linkRight > 0) list.scrollTo(list.scrollLeft + linkRight, 0);
+
+    const figureLeft = figure.getBoundingClientRect().left - figures.getBoundingClientRect().left;
     figures.scrollTo(figures.scrollLeft + figureLeft, 0);
   }
 
   // Select the current (or first) item on load.
   updateMediaSelection(window.location.hash);
 
-  window.addEventListener('popstate', () => updateMediaSelection(window.location.hash));
+  window.addEventListener('popstate', () => { 
+    const hash = window.location.hash;
+    if (hash.startsWith("#media-")) {
+      updateMediaSelection(hash);
+    }
+  });
 
-  // Maintain scroll snapping.
+  // Maintain scroll position.
   window.addEventListener('resize', () => {
-    figures.scrollTo(figures.scrollLeft, 0);
+    setScrollPositions();
   },
   { passive: true });
 });

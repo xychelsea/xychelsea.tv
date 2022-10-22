@@ -1,4 +1,6 @@
-<section id="contact" style='--banner-image: url("/images/{{ .Get "banner-image" }}");'>
+
+{{ $banner := resources.Get (path.Join "/images/" (.Get "banner-image")) | fingerprint "md5" }}
+<section id="contact" style='--banner-image: url("{{ $banner.RelPermalink }}");'>
   <div class="heading">
     <h2>{{ .Get "title"  | safeHTML }}</h2>
     <p>{{ .Inner }}</p>

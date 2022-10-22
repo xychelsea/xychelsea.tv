@@ -4,6 +4,8 @@
     {{ .Inner | markdownify }}
     <a class="button" href="https://readmetxt.xyz">Order Now</a>
   </div>
-  <div class="content" style='--banner-image: url("/images/{{ .Get "banner-image" }}"); --book-image: url("/images/{{ .Get "book-image" }}");'>
+  {{ $banner := resources.Get (path.Join "/images/" (.Get "banner-image")) | fingerprint "md5" }}
+  {{ $book := resources.Get (path.Join "/images/" (.Get "book-image")) | fingerprint "md5" }}
+  <div class="content" style='--banner-image: url("{{ $banner.RelPermalink }}"); --book-image: url("{{ $book.RelPermalink }}");'>
   </div>
 </section>

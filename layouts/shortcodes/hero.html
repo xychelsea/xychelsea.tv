@@ -1,3 +1,4 @@
-<header id="hero" style='--hero-image: url("/images/{{ .Get "image-url" }}");'>
+{{ $hero := resources.Get (path.Join "/images/" (.Get "image-url")) | fingerprint "md5" }}
+<header id="hero" style='--hero-image: url("{{ $hero.RelPermalink }}");'>
   <div>{{ .Inner | safeHTML }}</div>
 </header>

@@ -12,7 +12,8 @@
       {{ range $media }}
         <li>
           <a href="#media-{{ .Slug }}" title="{{ .Title }} / {{ .Description }}">
-            <img src="/images/media-thumbnails/{{ .Thumbnail }}" loading="lazy" alt="">
+            {{ $thumbnail := resources.Get (path.Join "/images/media-thumbnails/" .Thumbnail) | fingerprint "md5" }}
+            <img src="{{ $thumbnail.RelPermalink }}" loading="lazy" alt="">
           </a>
           <span>{{ .Label }} </span>
         </li>
@@ -28,7 +29,7 @@
       <figure id="media-{{ .Slug }}">
         {{ if ne .Embed "" }}
           <iframe
-            src="{{ .Embed }}"
+            data-src="{{ .Embed }}"
             loading="lazy"
             title="video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -36,10 +37,11 @@
             frameborder="0"
           ></iframe>
         {{ else }}
-          <a href="{{ .Link }}" ><img src="/images/media-banners/{{ .Banner }}" alt=""></a>
+          {{ $banner := resources.Get (path.Join "/images/media-banners/" .Banner) | fingerprint "md5" }}
+          <a href="{{ .Link }}" ><img src="{{ $banner.RelPermalink }}" loading="lazy" alt="" aria-labelledby="media-{{ .Slug }}-label"></a>
         {{ end }}
         <figcaption>
-          <p><span class="title">{{ .Title }}</span> / {{ .Description }}</p>
+          <p id="media-{{ .Slug }}-label"><span class="title">{{ .Title }}</span> / {{ .Description }}</p>
         </figcaption>
       </figure>
     {{ end }}
