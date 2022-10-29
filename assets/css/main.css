@@ -57,7 +57,7 @@
     );
   --shared-gradient-height: 290rem;
   --card-icon-background: linear-gradient(95deg, rgba(133, 0, 211, 0.8) -5%, rgba(207, 0, 112, 0.8) 115%);
-  --outline-width: 0.125rem;
+  --outline-width: 0.1875rem;
   --transition-duration: 0.2s;
 
   --default-social-icon-size: calc(100vw / 18);
@@ -823,12 +823,35 @@ main {
           scroll-snap-align: start;
 
           width: var(--width);
-          margin-right: calc((100% - var(--width)) / (var(--num-columns) - 1) - var(--width));
 
-          @media not screen and (min-width: 37.5rem) {
+          /* This distrubutes the empty space such that the rightmost item
+             sits flush to the right edge of the slider's visible area. */
+          &:not(:last-of-type) {
+            margin-right: calc((100% - var(--width)) / (var(--num-columns) - 1) - var(--width));
+          }
+          &:last-of-type {
+            margin-right: 0;
+          }
+
+          /* This is a rounding of the following piecewise psuedo-code:
+             --num-columns: calc(100vw / 12.5rem - 1) when min-width >= 48rem
+             --num-columns: calc(100vw / 8rem) when min-width < 48rem */
+          @media not screen and (min-width: 24rem) {
+            --num-columns: 3;
+          }
+          @media screen and (min-width: 24rem) {
             --num-columns: 4;
           }
-          @media screen and (min-width: 37.5rem) {
+          @media screen and (min-width: 32rem) {
+            --num-columns: 5;
+          }
+          @media screen and (min-width: 40rem) {
+            --num-columns: 6;
+          }
+          @media screen and (min-width: 48rem) {
+            --num-columns: 4;
+          }
+          @media screen and (min-width: 50rem) {
             --num-columns: 5;
           }
           @media screen and (min-width: 62.5rem) {
@@ -846,6 +869,21 @@ main {
           @media screen and (min-width: 112.5rem) {
             --num-columns: 10;
           }
+          @media screen and (min-width: 125rem) {
+            --num-columns: 11;
+          }
+          @media screen and (min-width: 137.5rem) {
+            --num-columns: 12;
+          }
+          @media screen and (min-width: 150rem) {
+            --num-columns: 13;
+          }
+          @media screen and (min-width: 162.5rem) {
+            --num-columns: 14;
+          }
+          @media screen and (min-width: 175rem) {
+            --num-columns: 15;
+          }
           
           & > a {
             --indicator-width: 0.125rem;
@@ -855,21 +893,20 @@ main {
             overflow: hidden;
             box-shadow: 0 0 0 var(--indicator-width) var(--indicator-color);
 
-            &:is(:hover, :focus-visible, :active):not(.current) {
+            &:is(.current, :hover, :focus-visible, :active) {
               --indicator-width: 0.25rem;
-              --indicator-color: 0.25rem;
-    
-              &:is(:hover, :focus-visible) {
-                --indicator-color: var(--cm-magenta);
-              }
-              &:active{
-                --indicator-color: var(--cm-magenta-half);
-              }
             }
 
-            &.current {
-              --indicator-width: 0.25rem;
+            &.current:not(:hover, :focus-visible, :active) {
               --indicator-color: var(--cm-purple);
+            }
+
+            &:is(:hover, :focus-visible):not(:active) {
+              --indicator-color: var(--cm-magenta);
+            }
+
+            &:active {
+              --indicator-color: var(--cm-magenta-half);
             }
 
             &, & > img {
@@ -902,10 +939,6 @@ main {
           }
           @media not screen and (min-width: 48rem) {
             --width: 3.25rem;
-          }
-
-          &:last-of-type {
-            margin-right: 0;
           }
         }
       }
@@ -1148,6 +1181,7 @@ nav {
             text-decoration: none;
             padding: 0.625rem var(--padding);
             margin: 0 calc(-1 * var(--padding));
+            border: var(--outline-width) dotted transparent;
   
             &:is(:hover, :focus-visible):not(:active) {
               text-shadow: 1px 1px rgba(0, 0, 0, .75) ;
@@ -1155,7 +1189,6 @@ nav {
             }
   
             &:focus-visible {
-              outline: var(--outline-width) dotted var(--cm-magenta);
             }
           }
         }

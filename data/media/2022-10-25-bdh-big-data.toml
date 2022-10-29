@@ -1,0 +1,9 @@
+Title = 'Brown Daily Herald'
+Slug = 'bdh-big-data'
+Label = "BDH"
+Description = '“Chelsea Manning discusses social impacts of big data”'
+Embed = ''
+Thumbnail = 'bdh-big-data.webp'
+Link = 'https://www.browndailyherald.com/article/2022/10/chelsea-manning-discusses-social-impacts-of-big-data'
+Banner = 'bdh-big-data.webp'
+Weight = -80
