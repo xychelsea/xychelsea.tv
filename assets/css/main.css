@@ -29,7 +29,7 @@
 }
 
 *:focus-visible {
-  outline: var(--outline-width) solid var(--cm-purple);
+  outline: var(--outline-width) dotted var(--cm-magenta);
 }
 
 :root {
@@ -79,6 +79,9 @@
 
 html {
   overscroll-behavior: none;
+
+  scroll-padding-top: calc(var(--outline-width) + 0.5rem);
+  scroll-padding-bottom: calc(var(--social-bar-gutter) + var(--outline-width) + 0.5rem);
 }
 
 body {
@@ -296,7 +299,7 @@ a, button {
     flex-shrink: 0;
 
     &:focus-visible {
-      border-color: var(--cm-purple);
+      border-color: var(--cm-magenta);
     }
     
     &:disabled {
@@ -332,6 +335,11 @@ a, button {
 
   & > :is(ol, ul) {
     overscroll-behavior-x: none;
+
+    &:focus-visible {
+      outline-color: var(--cm-purple);
+      outline-style: dashed;
+     }
   }
 }
 
@@ -517,7 +525,7 @@ main {
 
             &:focus-visible {
               outline: none;
-              border-color: var(--cm-purple);
+              border-color: var(--cm-magenta);
             }
 
             & > article {
@@ -698,7 +706,7 @@ main {
 
               &:focus-visible {
                 outline: none;
-                border-color: var(--cm-purple);
+                border-color: var(--cm-magenta);
               }
 
               & > img {
@@ -975,8 +983,14 @@ main {
         width: 100%;
         scroll-snap-align: start;
 
+        @nest .has-current &:not(.current) {
+          visibility: hidden;
+        }
+
         & > :is(iframe, a) {
           overflow: hidden;
+          outline-offset: calc(-1 * var(--outline-width));
+          --outline-width: 0.25rem;
 
           &, & > img {
             display: block;
@@ -1097,7 +1111,7 @@ nav {
 
     border-bottom-left-radius: 1.25rem;
     &:focus-visible {
-      outline: 0.25rem solid var(--cm-magenta);
+      outline: 0.25rem dotted var(--cm-magenta);
     }
   
     @media screen and (min-width: 48rem) {
@@ -1152,7 +1166,13 @@ nav {
       &.close-button {
         width: min-content;
         margin-left: auto;
-        padding: 0 0 1.5rem 1.5rem;
+        padding: calc(0.75rem - var(--outline-width));
+        border: var(--outline-width) dotted transparent;
+
+        &:focus-visible  {
+          border-color: var(--cm-magenta);
+          outline: none;
+        }
   
         & > picture {
           height: 1.5rem;
@@ -1197,6 +1217,7 @@ nav {
             padding: 0.625rem var(--padding);
             margin: 0 calc(-1 * var(--padding));
             border: var(--outline-width) dotted transparent;
+            outline: none;
   
             &:is(:hover, :focus-visible):not(:active) {
               text-shadow: 1px 1px rgba(0, 0, 0, .75) ;
@@ -1204,6 +1225,7 @@ nav {
             }
   
             &:focus-visible {
+              border-color: var(--cm-magenta);
             }
           }
         }

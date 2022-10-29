@@ -1,12 +1,12 @@
 // Initialize menu history-tidiness enhancement.
 document.addEventListener('DOMContentLoaded', () => {
-const closeButtons = document.querySelectorAll('[href="#close-menu"]');
-for (const closeButton of closeButtons) {
-  closeButton.addEventListener('click', (event) => {
-    document.activeElement.blur()
-    event.preventDefault();
-  });
-}
+  const closeButtons = document.querySelectorAll('[href="#close-menu"]');
+  for (const closeButton of closeButtons) {
+    closeButton.addEventListener('click', (event) => {
+      document.activeElement.blur()
+      event.preventDefault();
+    });
+  }
 });
 
 // Initialize overlay card behavior.
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const element = document.getElementById(location.hash.substring(1));
+    const element = document.querySelector(location.hash);
     if (element && element.classList.contains('card')) {
       const cardTitle = element.dataset.title;
       if (cardTitle) {
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     // Maintain scroll snapping.
-    window.addEventListener('resize', (e) => {
+    window.addEventListener('resize', () => {
       scrollContainer.style.scrollBehavior = "auto";
       scrollTo(scrollContainer.scrollLeft);
       scrollContainer.style.scrollBehavior = null;
@@ -223,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const figure = figures.querySelector(`figure${hash}`) || figures.querySelector(`figure`);
     link.classList.add('current');
     figure.classList.add('current');
+    figures.classList.add('has-current');
 
     setScrollPositions(link, figure);
 
