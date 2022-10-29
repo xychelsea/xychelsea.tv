@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return (...params) => {
       window.cancelAnimationFrame(request);
 
-      // Allow a full "rest" frame to pass before executing the function.
+      // Allow two full "rest" frames to pass before executing the function.
       request = window.requestAnimationFrame(() => {
         request = window.requestAnimationFrame(() => {
           request = window.requestAnimationFrame(() => {
@@ -225,6 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
     figure.classList.add('current');
     figures.classList.add('has-current');
 
+    for (const iframe of figures.querySelectorAll('figure:not(.current) iframe')) {
+      iframe.contentWindow.postMessage(JSON.stringify(
+        { event: 'command', func: 'pauseVideo' }), '*');
+    }
+
     setScrollPositions(link, figure);
 
     // Load iframe content.
@@ -233,8 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (iframe.hasAttribute('data-src')) {
         const figure = iframe.parentElement;
         figure.removeChild(iframe);
-        iframe.setAttribute('src', iframe.getAttribute('data-src'));
+        const src = new URL(iframe.getAttribute('data-src'));
         iframe.removeAttribute('data-src');
+        src.searchParams.append('enablejsapi', 1);
+        iframe.setAttribute('src', src);
         figure.insertBefore(iframe, figure.firstChild);
       }
     }
