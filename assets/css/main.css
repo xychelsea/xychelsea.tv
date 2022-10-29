@@ -688,6 +688,7 @@ main {
             aspect-ratio: var(--aspect-ratio);
 
             & > a {
+              position: relative;
               text-decoration: unset;
               color: unset;
               display: block;
@@ -706,6 +707,20 @@ main {
                 width: 100%;
                 aspect-ratio: var(--aspect-ratio);
                 object-fit: cover;
+              }
+              
+              &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                box-shadow:
+                  inset 0 0 0.04rem 0.04rem rgba(255, 255, 255, 1),
+                  inset 0 0 0.08rem 0.08rem rgba(255, 255, 255, 0.75),
+                  inset 0 0 0.16rem 0.16rem rgba(255, 255, 255, 0.5),
+                  inset 0 0 0.32rem 0.32rem rgba(255, 255, 255, 0.25)
               }
             }
           }
