@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source .env
+source ../.env.postgres
 
 docker exec --interactive --tty --user postgres postgresql psql \
-        -U ${POSTGRES_USERNAME} \
-        -d ${POSTGRES_DATABASE}
+        -U ${POSTGRES_USER} \
+        -d ${POSTGRES_DB}
 
