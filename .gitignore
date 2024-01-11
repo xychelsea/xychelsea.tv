@@ -1,5 +1,5 @@
 .hugo_build.lock
-.env
+.env*
 hugo_cache
 node_modules
 public

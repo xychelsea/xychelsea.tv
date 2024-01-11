@@ -4,10 +4,8 @@ services:
   postgresql:
     container_name: postgresql
     image: 'postgres:15.5-alpine3.19'
-    environment:
-      POSTGRES_USER: "unleash-shopping"
-      POSTGRES_PASSWORD: "swooned-bottom-glorified-gutless"
-      POSTGRES_DB: "cosmetics-masculine"
+    env_file:
+      - .env.postgres
     volumes:
       - /data/postgresql/data:/var/lib/postgresql/data
     restart: always
@@ -19,12 +17,8 @@ services:
     user: node
     working_dir: /home/node/app
     command: [ "node", "server.js" ]
-    environment:
-      PGUSER: "cesarean-mustiness"
-      PGPASSWORD: "yahoo-graduate-statue-devoutly"
-      PGDATABASE: "cosmetics-masculine"
-      PGHOST: postgresql
-      PGPORT: 5432
+    env_file:
+      - .env.nodejs
     volumes:
       - /data/node/app:/home/node/app
     restart: always
@@ -44,9 +38,8 @@ services:
         published: 443
         protocol: tcp
         mode: host
-    environment:
-      - NGINX_HOST=xychelsea.tv
-      - NGINX_PORT=80
+    env_file:
+      - .env.nginx
     volumes:
       - /data/nginx/cache:/var/lib/nginx
       - /data/nginx/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
